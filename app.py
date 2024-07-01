@@ -61,7 +61,7 @@ app.config.from_object(ApplicationConfig)
 
 mail = Mail(app=app)
 
-CORS(app=app, supports_credentials=True, origins="*", methods=['POST'], allow_headers=['Content-Type'])
+CORS(app=app, supports_credentials=True, origins=app.config['FRONTEND_URL'], methods=['POST'], allow_headers=['Content-Type'])
 server_session = Session(app)
 socketio = SocketIO(app, manage_session=False, cors_allowed_origins="*")
 
