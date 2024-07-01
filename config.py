@@ -16,10 +16,11 @@ class ApplicationConfig:
     SQLALCHEMY_DATABASE_URI = 'sqlite:///db.sqlite'
 
     # session
-    SESSION_TYPE = 'redis'
+    # SESSION_TYPE = 'redis'
+    SESSION_TYPE = 'filesystem'
     SESSION_PERMANENT = False
     SESSION_USE_SIGNER = True
-    SESSION_REDIS = redis.from_url(os.getenv('REDIS_URL'))
+    # SESSION_REDIS = redis.from_url(os.getenv('REDIS_URL'))
     SESSION_COOKIE_SAMESITE = 'None'
     SESSION_COOKIE_SECURE = True
     SESSION_KEY_PREFIX = 'session:'
