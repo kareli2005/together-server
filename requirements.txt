@@ -1,0 +1,13 @@
+redis
+python_dotenv
+flask
+flask_sqlalchemy
+flask_cors
+flask_mail
+flask_session
+flask_migrate
+flask_bcrypt
+flask_socketio
+werkzeug
+sqlalchemy
+cloudinary
