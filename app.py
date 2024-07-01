@@ -61,7 +61,7 @@ app.config.from_object(ApplicationConfig)
 
 mail = Mail(app=app)
 
-CORS(app=app, supports_credentials=True, origins=[app.config['FRONTEND_URL']], methods=['POST'], allow_headers=['Content-Type'])
+CORS(app=app, supports_credentials=True, origins="*", methods=['POST'], allow_headers=['Content-Type'])
 server_session = Session(app)
 socketio = SocketIO(app, manage_session=False, cors_allowed_origins="*")
 
@@ -117,7 +117,7 @@ def allowed_file(filename):
 
 @app.after_request
 def add_cors_headers(response):
-  response.headers['Access-Control-Allow-Origin'] = app.config['FRONTEND_URL']
+  response.headers['Access-Control-Allow-Origin'] = "*"
   response.headers['Access-Control-Allow-Credentials'] = 'true'
   response.headers['Access-Control-Allow-Headers'] = 'Content-Type, Authorization'
   response.headers['Access-Control-Allow-Methods'] = 'GET, POST'
