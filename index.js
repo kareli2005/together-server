@@ -1,44 +1,32 @@
-const express = require('express')
-const dotenv = require('dotenv')
-const cors = require('cors')
-const connectDB = require('./config/db')
-const authRoutes = require('./routes/authRoutes')
-const mailRoutes = require('./routes/mailRoutes')
+const express = require('express');
+const dotenv = require('dotenv');
+const cors = require('cors');
+const connectDB = require('./config/db');
+const authRoutes = require('./routes/authRoutes');
+const mailRoutes = require('./routes/mailRoutes');
 
+dotenv.config();
 
-dotenv.config()
+const app = express();
+app.use(cors());
+app.use(express.json());
 
-const app = express()
-app.use(cors())
-app.use(express.json())
+connectDB();
 
-connectDB()
-
-app.use('/api/auth', authRoutes)
-app.use('/api/mail', mailRoutes)
+app.use('/api/auth', authRoutes);
+app.use('/api/mail', mailRoutes);
 app.get('/api', (req, res) => {
   console.log('API endpoint hit');
   res.send('Hello world');
 });
 
+// Export the app for use as a serverless function
+module.exports = app;
 
-const PORT = process.env.PORT || 5000
-app.listen(PORT, () => {
-  console.log('Server is running on port: ', PORT)
-})
-// const express = require("express")
-// const app = express()
-// const PORT = 4000
-
-// app.get("/home", (req, res) => {
-//   res.status(200).json("Welcome to app home")
-// })
-// app.get("/", (req, res) => {
-//   res.status(200).json("Welcome to app")
-// })
-
-// app.listen(PORT, () => {
-//   console.log('Server running on port 5000')
-// })
-
-module.exports = app
+// Vercel requires a function to export
+if (require.main === module) {
+  const PORT = process.env.PORT || 5000;
+  app.listen(PORT, () => {
+    console.log('Server is running on port: ', PORT);
+  });
+}
