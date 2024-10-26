@@ -17,8 +17,10 @@ connectDB()
 app.use('/api/auth', authRoutes)
 app.use('/api/mail', mailRoutes)
 app.get('/api', (req, res) => {
-  res.end('Hello world')
-})
+  console.log('API endpoint hit');
+  res.send('Hello world');
+});
+
 
 const PORT = process.env.PORT || 5000
 app.listen(PORT, () => {
