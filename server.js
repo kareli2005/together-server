@@ -16,7 +16,7 @@ connectDB()
 
 app.use('/api/auth', authRoutes)
 app.use('/api/mail', mailRoutes)
-app.get('/api', (req, res) => {
+app.get('/', (req, res) => {
   console.log('API endpoint hit');
   res.send('Hello world');
 });
